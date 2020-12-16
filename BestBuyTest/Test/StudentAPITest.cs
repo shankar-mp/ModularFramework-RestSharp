@@ -70,31 +70,24 @@ namespace StudentTest.Test
 
         }
 
-        //[TestMethod]
-        //public void VerifyAddStudentApiWithObjectRequestPayload()
-        //{
+        [TestMethod]
+        public void VerifyAddStudentApiWithObjectRequestPayload()
+        {
 
-        //    Dictionary<string, object> requestPayload = new Dictionary<string, object>();
+            Dictionary<string, object> requestPayload = new Dictionary<string, object>();
 
-        //    requestPayload.Add("name", "Samsung Mobile");
-        //    requestPayload.Add("type", "Mobile");
-        //    requestPayload.Add("price", 500);
-        //    requestPayload.Add("shipping", 10);
-        //    requestPayload.Add("upc", "Samsung Mobile");
-        //    requestPayload.Add("description", "Best Samsung Mobile");
-        //    requestPayload.Add("manufacturer", "Samsung Mobile");
-        //    requestPayload.Add("model", "Samsung Mobile M21");
-        //    requestPayload.Add("url", "Samsung Mobile");
-        //    requestPayload.Add("image", "Samsung Mobile");
+            requestPayload.Add("first_name", "Shankar");
+            requestPayload.Add("middle_name", "M");
+            requestPayload.Add("last_name", "Prasad");
+            requestPayload.Add("date_of_birth", "01/01/01");
+            
+            string productEndpointUrl = $"{endpointUrl}/{studentResource}";
+            var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
 
-
-        //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
-
-        //    Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
 
 
-        //}
+        }
 
         //[TestMethod]
         //public void VerifyAddStudentApiWithRequestPayloadInJsonFile()
