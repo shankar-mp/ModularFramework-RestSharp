@@ -186,12 +186,11 @@ namespace StudentTest.Test
             //GET Request
             Dictionary<string, object> allQueryParam = new Dictionary<string, object>();
 
-            //int id = 106;
             allQueryParam.Add("$id", id);
 
-            IRestResponse restResponseFromGet = requestFactory.GetAllStudent($"{productEndpointUrl}/{id}", allQueryParam);
+            var restResponseFromGet = requestFactory.GetAllStudent($"{productEndpointUrl}/{id}", allQueryParam);
 
-            Assert.AreEqual(HttpStatusCode.OK, restResponseFromGet.StatusCode);
+            Assert.AreEqual("false", restResponseFromGet.Data.status);
 
         }
     }
