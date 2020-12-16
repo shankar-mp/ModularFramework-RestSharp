@@ -89,53 +89,47 @@ namespace StudentTest.Test
 
         }
 
-        //[TestMethod]
-        //public void VerifyAddStudentApiWithRequestPayloadInJsonFile()
-        //{
+        [TestMethod]
+        public void VerifyAddStudentApiWithRequestPayloadInJsonFile()
+        {
 
-        //    string requestPayloadJsonFile = $"{currentProjectDirectory}/TestData/product.json";
+            string requestPayloadJsonFile = $"{currentProjectDirectory}/TestData/student.json";
 
-        //    string requestPayload = File.ReadAllText(requestPayloadJsonFile);
+            string requestPayload = File.ReadAllText(requestPayloadJsonFile);
 
-        //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
+            string productEndpointUrl = $"{endpointUrl}/{studentResource}";
+            var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
 
-        //    Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
-
-
-        //}
-
-        //[TestMethod]
-        //public void VerifyAddStudentApiWithRequestPayloadAsObject()
-        //{
-
-        //    ProductDTO requestPayload = new ProductDTO();
-
-        //    requestPayload.name = "IPhone";
-        //    requestPayload.type = "Mobile";
-        //    requestPayload.price = 1000;
-        //    requestPayload.shipping = 10;
-        //    requestPayload.upc = "2asj";
-        //    requestPayload.description = "Iphone New Model";
-        //    requestPayload.manufacturer = "Apple";
-        //    requestPayload.model = "iPhone 12";
-        //    requestPayload.url = "rweuru";
-        //    requestPayload.image = "sdfsadfasd";
+            Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
 
 
-        //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
+        }
 
-        //    Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
+        [TestMethod]
+        public void VerifyAddStudentApiWithRequestPayloadAsObject()
+        {
+
+            Data requestPayload = new Data();
+
+            requestPayload.id = 0;
+            requestPayload.first_name = "Shankar";
+            requestPayload.middle_name = "M";
+            requestPayload.last_name = "Prasad";
+            requestPayload.date_of_birth = "01/01/02";
+
+            string productEndpointUrl = $"{endpointUrl}/{studentResource}";
+            var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
+
+            Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
 
 
-        //}
+        }
 
         //[TestMethod]
         //public void VerifyEditProductApiWithRequestPayloadAsObject()
         //{
         //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    ProductDTO requestPayload = new ProductDTO();
+        //    StudentDTO requestPayload = new StudentDTO();
 
         //    requestPayload.name = "IPhone";
         //    requestPayload.type = "Mobile";
@@ -156,7 +150,7 @@ namespace StudentTest.Test
 
         //    int id = restResponse.Data.id;
 
-        //    ProductDTO requestPayloadForUpdate = new ProductDTO();
+        //    StudentDTO requestPayloadForUpdate = new StudentDTO();
 
         //    requestPayloadForUpdate.name = "Samsung Mobile";
         //    requestPayloadForUpdate.type = "Mobile";
@@ -180,7 +174,7 @@ namespace StudentTest.Test
         //public void VerifyDeleteProductApiWithRequestPayloadAsObject()
         //{
         //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    ProductDTO requestPayload = new ProductDTO();
+        //    StudentDTO requestPayload = new StudentDTO();
 
         //    requestPayload.name = "IPhone";
         //    requestPayload.type = "Mobile";
