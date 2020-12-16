@@ -125,88 +125,74 @@ namespace StudentTest.Test
 
         }
 
-        //[TestMethod]
-        //public void VerifyEditProductApiWithRequestPayloadAsObject()
-        //{
-        //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    StudentDTO requestPayload = new StudentDTO();
+        [TestMethod]
+        public void VerifyEditStudentApiWithRequestPayloadAsObject()
+        {
+            string productEndpointUrl = $"{endpointUrl}/{studentResource}";
+            Data requestPayload = new Data();
 
-        //    requestPayload.name = "IPhone";
-        //    requestPayload.type = "Mobile";
-        //    requestPayload.price = 1000;
-        //    requestPayload.shipping = 10;
-        //    requestPayload.upc = "2asj";
-        //    requestPayload.description = "Iphone New Model";
-        //    requestPayload.manufacturer = "Apple";
-        //    requestPayload.model = "iPhone 12";
-        //    requestPayload.url = "rweuru";
-        //    requestPayload.image = "sdfsadfasd";
+            //requestPayload.id = 0;
+            requestPayload.first_name = "Shankar";
+            requestPayload.middle_name = "M";
+            requestPayload.last_name = "Prasad";
+            requestPayload.date_of_birth = "01/01/03";
 
 
+            var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
 
-        //    var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
+            Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
 
-        //    Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
+            int id = restResponse.Data.id;
 
-        //    int id = restResponse.Data.id;
+            Data requestPayloadForUpdate = new Data();
 
-        //    StudentDTO requestPayloadForUpdate = new StudentDTO();
+            requestPayloadForUpdate.id = id;
+            requestPayloadForUpdate.first_name = "Shankar";
+            requestPayloadForUpdate.middle_name = "M";
+            requestPayloadForUpdate.last_name = "Prasad";
+            requestPayloadForUpdate.date_of_birth = "01/01/04";
 
-        //    requestPayloadForUpdate.name = "Samsung Mobile";
-        //    requestPayloadForUpdate.type = "Mobile";
-        //    requestPayloadForUpdate.price = 1000;
-        //    requestPayloadForUpdate.shipping = 10;
-        //    requestPayloadForUpdate.upc = "2asj";
-        //    requestPayloadForUpdate.description = "Samsung New Model";
-        //    requestPayloadForUpdate.manufacturer = "Samsung";
-        //    requestPayloadForUpdate.model = "Samsung 12";
-        //    requestPayloadForUpdate.url = "rweuru";
-        //    requestPayloadForUpdate.image = "sdfsadfasd";
+            var restResponseFromEdit = requestFactory.EditStudent($"{productEndpointUrl}/{id}", requestPayloadForUpdate);
 
-        //    var restResponseFromEdit = requestFactory.EditProduct($"{productEndpointUrl}/{id}", requestPayloadForUpdate);
+            Assert.AreEqual(HttpStatusCode.OK, restResponseFromEdit.StatusCode);
 
-        //    Assert.AreEqual(HttpStatusCode.OK, restResponseFromEdit.StatusCode);
+            //Assert.AreEqual(requestPayloadForUpdate.date_of_birth, restResponseFromEdit.Data.date_of_birth);
+        }
 
-        //    Assert.AreEqual(requestPayloadForUpdate.name, restResponseFromEdit.Data.name);
-        //}
+        [TestMethod]
+        public void VerifyDeleteStudentApiWithRequestPayloadAsObject()
+        {
+            string productEndpointUrl = $"{endpointUrl}/{studentResource}";
+            Data requestPayload = new Data();
 
-        //[TestMethod]
-        //public void VerifyDeleteProductApiWithRequestPayloadAsObject()
-        //{
-        //    string productEndpointUrl = $"{endpointUrl}/{studentResource}";
-        //    StudentDTO requestPayload = new StudentDTO();
+            //requestPayload.id = 0;
+            requestPayload.first_name = "Shankar";
+            requestPayload.middle_name = "M";
+            requestPayload.last_name = "Prasad";
+            requestPayload.date_of_birth = "01/01/03";
 
-        //    requestPayload.name = "IPhone";
-        //    requestPayload.type = "Mobile";
-        //    requestPayload.price = 1000;
-        //    requestPayload.shipping = 10;
-        //    requestPayload.upc = "2asj";
-        //    requestPayload.description = "Iphone New Model";
-        //    requestPayload.manufacturer = "Apple";
-        //    requestPayload.model = "iPhone 12";
-        //    requestPayload.url = "rweuru";
-        //    requestPayload.image = "sdfsadfasd";
+            var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
 
+            Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
 
+            int id = restResponse.Data.id;
 
-        //    var restResponse = requestFactory.AddStudent(productEndpointUrl, requestPayload);
+            //DELETE Request
 
-        //    Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode);
+            var restResponseFromDelete = requestFactory.DeleteStudent($"{productEndpointUrl}/{id}");
 
-        //    int id = restResponse.Data.id;
+            Assert.AreEqual(HttpStatusCode.OK, restResponseFromDelete.StatusCode);
 
-        //    //DELETE Request
+            //GET Request
+            Dictionary<string, object> allQueryParam = new Dictionary<string, object>();
 
-        //    var restResponseFromDelete = requestFactory.DeleteProduct($"{productEndpointUrl}/{id}");
+            //int id = 106;
+            allQueryParam.Add("$id", id);
 
-        //    Assert.AreEqual(HttpStatusCode.OK, restResponseFromDelete.StatusCode);
+            IRestResponse restResponseFromGet = requestFactory.GetAllStudent($"{productEndpointUrl}/{id}", allQueryParam);
 
-        //    //GET Request
+            Assert.AreEqual(HttpStatusCode.OK, restResponseFromGet.StatusCode);
 
-        //    var restResponseFromGet = requestFactory.GetAllStudent($"{productEndpointUrl}/{id}");
-
-        //    Assert.AreEqual(HttpStatusCode.NotFound, restResponseFromGet.StatusCode);
-
-        //}
+        }
     }
 }

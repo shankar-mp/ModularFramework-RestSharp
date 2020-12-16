@@ -51,25 +51,27 @@ namespace StudentApp.Request
 
         }
 
-        //public IRestResponse<DatumDTO> EditStudent(string endpointUrl, object requestPayload)
-        //{
+        public IRestResponse<DatumDTO> EditStudent(string endpointUrl, object requestPayload)
+        {
 
-        //    var restRequest = new RestRequest(endpointUrl);
-        //    restRequest.AddJsonBody(requestPayload);
+            var restRequest = new RestRequest(endpointUrl);
+            restRequest.AddJsonBody(requestPayload);
+            Dictionary<string, object> queryParameter = new Dictionary<string, object>();
+            //queryParameter.Add("studentsDetail", "");
 
-        //    var restResponse = restClient.SendPutRequest<DatumDTO>(restRequest, null, null);
+            var restResponse = restClient.SendPutRequest<DatumDTO>(restRequest, queryParameter, null);
 
-        //    return restResponse;
+            return restResponse;
 
-        //}
+        }
 
-        //public IRestResponse DeleteStudent(string endpointUrl)
-        //{
-        //    var restRequest = new RestRequest(endpointUrl);
+        public IRestResponse DeleteStudent(string endpointUrl)
+        {
+            var restRequest = new RestRequest(endpointUrl);
 
-        //    var restResponse = restClient.SendDeleteRequest(restRequest);
+            var restResponse = restClient.SendDeleteRequest(restRequest);
 
-        //    return restResponse;
-        //}
+            return restResponse;
+        }
     }
 }
