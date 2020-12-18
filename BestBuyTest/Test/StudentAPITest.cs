@@ -14,7 +14,7 @@ namespace StudentTest.Test
     [TestClass]
     public class StudentAPITest : BaseTest
     {
-
+        //Verify GET Student
         [TestMethod]
         public void VerifyGetStudentAPI()
         {
@@ -28,7 +28,7 @@ namespace StudentTest.Test
             Assert.AreEqual(HttpStatusCode.OK, restResponse.StatusCode);
 
         }
-
+        //Verify GET Student with Query Parameters
         [TestMethod]
         public void VerifyGetStudentAPIWithQueryParam()
         {
@@ -54,7 +54,7 @@ namespace StudentTest.Test
             Assert.AreEqual(id, restResponse.Data.data.id);
 
         }
-
+        //Verify ADD-POST Student with String
         [TestMethod]
         public void VerifyAddStudentApiWithStringRequestPayload()
         {
@@ -69,7 +69,7 @@ namespace StudentTest.Test
 
 
         }
-
+        //Verify ADD-POST Student with Object
         [TestMethod]
         public void VerifyAddStudentApiWithObjectRequestPayload()
         {
@@ -88,7 +88,7 @@ namespace StudentTest.Test
 
 
         }
-
+        //Verify ADD-POST Student with JSON
         [TestMethod]
         public void VerifyAddStudentApiWithRequestPayloadInJsonFile()
         {
@@ -104,7 +104,7 @@ namespace StudentTest.Test
 
 
         }
-
+        //Verify ADD-POST Student with Object
         [TestMethod]
         public void VerifyAddStudentApiWithRequestPayloadAsObject()
         {
@@ -124,7 +124,7 @@ namespace StudentTest.Test
 
 
         }
-
+        //Verify Update-PUT Student with Object
         [TestMethod]
         public void VerifyEditStudentApiWithRequestPayloadAsObject()
         {
@@ -158,7 +158,7 @@ namespace StudentTest.Test
 
             //Assert.AreEqual(requestPayloadForUpdate.date_of_birth, restResponseFromEdit.Data.date_of_birth);
         }
-
+        //Verify DELETE Student with Object
         [TestMethod]
         public void VerifyDeleteStudentApiWithRequestPayloadAsObject()
         {

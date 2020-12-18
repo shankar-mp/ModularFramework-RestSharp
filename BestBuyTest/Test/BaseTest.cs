@@ -23,7 +23,8 @@ namespace StudentTest.Test
         public static ExtentReportUtils reportUtils;
 
         public TestContext TestContext { get; set; }
-
+        
+        //PreSetup
         [AssemblyInitialize]
         public static void PreSetup(TestContext context)
         {
@@ -42,7 +43,7 @@ namespace StudentTest.Test
 
             reportUtils = new ExtentReportUtils(reportFilename);
         }
-
+        //Setup 
         [TestInitialize]
         public void Setup()
         {
@@ -61,7 +62,7 @@ namespace StudentTest.Test
             studentResource = "studentsDetails";
             Console.WriteLine("Setup");
         }
-
+        //Post Execution
         [TestCleanup]
         public void PostTestExecution()
         {
@@ -75,9 +76,7 @@ namespace StudentTest.Test
             }
 
         }
-
-
-
+        //Post cleanup
         [AssemblyCleanup]
         public static void PostCleanup()
         {
